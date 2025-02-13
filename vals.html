@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+            position: absolute;
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+    <!-- Include the canvas-confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="image-container">
+        <img src="kay.jpeg" alt="Picture of KAY">
+    </div>
+    <div class="container">
+        <h1>Will you be my Valentine, KAY? ❤️</h1>
+        <button class="yes" onclick="yesClicked()">Yes</button>
+        <button class="no" onmouseover="moveButton(this)">No</button>
+    </div>
+
+    <script>
+        function yesClicked() {
+            // Trigger confetti effect
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { x: 0.5, y: 0.5 }
+            });
+
+            // After 2 seconds, show the alert
+            setTimeout(() => {
+                alert("Yay! Can't wait for our date! ❤️");
+            }, 2000); // Adjust the time to match the duration of confetti
+        }
+        
+        function moveButton(button) {
+            const x = Math.random() * (window.innerWidth - button.clientWidth);
+            const y = Math.random() * (window.innerHeight - button.clientHeight);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
+
