@@ -15,6 +15,7 @@
             text-align: center;
             flex-direction: column;
             position: relative;
+            display: none; /* Hide content until password is entered */
         }
         .container {
             background: white;
@@ -49,12 +50,11 @@
             border-radius: 10px;
         }
     </style>
-    <!-- Include the canvas-confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="image-container">
-        <img src="kay.jpeg" alt="Picture of KAY">
+        <img src="kay_picture.jpg" alt="Picture of KAY">
     </div>
     <div class="container">
         <h1>Will you be my Valentine, KAY? ❤️</h1>
@@ -64,26 +64,36 @@
 
     <script>
         function yesClicked() {
-            // Trigger confetti effect
             confetti({
                 particleCount: 200,
                 spread: 70,
                 origin: { x: 0.5, y: 0.5 }
             });
 
-            // After 2 seconds, show the alert
             setTimeout(() => {
                 alert("Yay! Can't wait for our date! ❤️");
-            }, 2000); // Adjust the time to match the duration of confetti
+            }, 2000);
         }
-        
+
         function moveButton(button) {
             const x = Math.random() * (window.innerWidth - button.clientWidth);
             const y = Math.random() * (window.innerHeight - button.clientHeight);
             button.style.left = `${x}px`;
             button.style.top = `${y}px`;
         }
+
+        // Password protection
+        window.onload = function() {
+            const correctPassword = "LOVE2025"; 
+            const userPassword = prompt("Enter the secret password to access:");
+
+            if (userPassword === correctPassword) {
+                document.body.style.display = "flex"; 
+            } else {
+                alert("Incorrect password! Access denied.");
+                window.location.href = "https://google.com"; 
+            }
+        };
     </script>
 </body>
 </html>
-
